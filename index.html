@@ -1,59 +1,57 @@
 <!DOCTYPE html>
-<html lang = "ru">
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Семестровая работа</title>
+</head>
+<body>
+  <header>Хэдер</header>
 
+  <nav>
+    <ul>
+      <li><a href="index.html">Главная</a></li>
+      <li><a href="pages/news.html">Новости</a></li>
+      <li><a href="pages/practices.html">Практики</a></li>
+      <li><a href="pages/goods.html">Товары</a></li>
+      <li><a href="pages/contacts.html">Контакты</a></li>
+    </ul>
+  </nav>
 
-    <head>
-        <meta charset="UTF-8"> 
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-        <title>Семестровая работа</title> 
-    </head> 
-    <body>
-        <div id="header">Хэдер</div> 
-        <div id="menu"> 
-            <ul> 
-                <li><a href="index.html">Главная</a></li> 
-                <li><a href="pages/news.html">Новости</a></li>   
-                <li><a href="pages/goods.html">Товары</a></li> 
-                <li><a href="pages/contacts.html">Контакты</a></li> 
-            </ul> 
-        </div> 
-        <div id="content"> 
-            <p>Информация об авторе</p> 
-            <img src="images/MisterIncredible.jpg" alt="Товар 1" width="200" height="200">
-            <p>Иванов Иван Иванович</p> 
-            <p>ЭФБО-00-00</p> 
-            <p>Обо мне: Я родился в Москве в 70-м на краю города. Глупость рано 
-            ударила в голову. В четыре активно ругался. 
-            Потом школа, форма, драки, клей. Так я становился сильней. Воровал деньги в 
-            раздевалке.</p> 
+  <main>
+    <h1>Информация об авторе</h1>
+    <img src="images/MisterIncredible.jpg" alt="Фото автора" width="200" height="250" />
 
-            <div>Навык 1</div> 
+    <p>Иванов Иван Иванович</p>
+    <p>ЭФБО-00-00</p>
 
-            <div>Навык 2</div> 
+    <p>Обо мне: Я родился в Москве в 70-м на краю города. Глупость рано ударила в голову. В четыре активно ругался. Потом школа, форма, драки, клей. Так я становился сильней. Воровал деньги в раздевалке.</p>
 
-            <div>Навык 3</div> 
+    <section class="skills">
+      <h2>Навыки</h2>
+      <div>Навык 1</div>
+      <div>Навык 2</div>
+      <div>Навык 3</div>
+      <div>Навык 4</div>
+    </section>
 
-            <div>Навык 4</div> 
-            
-            <div> 
-                Мой опыт работы: 
-                <div> 
-                    Опыт 1<br> 
-                    Работал фантазёром. Сочинял и праздновал. 
-                </div> 
+    <section class="experience">
+      <h2>Мой опыт работы</h2>
+      <article>
+        <h3>Опыт 1</h3>
+        <p>Работал фантазёром. Сочинял и праздновал.</p>
+      </article>
+      <article>
+        <h3>Опыт 2</h3>
+        <p>Работал воровством. Воровал и продавал.</p>
+      </article>
+      <article>
+        <h3>Опыт 3</h3>
+        <p>Работал рэпером. Читал и пел.</p>
+      </article>
+    </section>
+  </main>
 
-                <div> 
-                        Опыт 2<br> 
-                        Работал воровством. Воровал и продавал. 
-                </div> 
-
-                <div> 
-                    Опыт 3<br> 
-                    Работал рэпером. Читал и пел. 
-                </div> 
-
-            </div> 
-        </div> 
-        <div id="footer">Футер</div>   
-    </body>
+  <footer>Футер</footer>
+</body>
 </html>
