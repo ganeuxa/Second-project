@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Контакты</title>
+  <link rel="stylesheet" href="../style/styles.css">
+</head>
+<body>
+  <div class="page">
+    <header class="header">
+      <h1 class="header__title">Контакты</h1>
+    </header>
+
+    <nav class="nav">
+      <ul class="nav__list">
+        <li class="nav__item"><a class="nav__link" href="../index_v1.html">Главная</a></li>
+        <li class="nav__item"><a class="nav__link" href="news_v1.html">Новости</a></li>
+        <li class="nav__item"><a class="nav__link" href="goods_v1.html">Товары</a></li>
+        <li class="nav__item nav__item--active"><a class="nav__link" href="contacts.html">Контакты</a></li>
+      </ul>
+    </nav>
+
+    <main class="main">
+      <section class="contacts">
+        <h2 class="contacts__title">Наши контакты</h2>
+        <div class="contacts__grid">
+          <div class="contact-item">
+            <h3 class="contact-item__label">Email</h3>
+            <p class="contact-item__value">user@example.com</p>
+          </div>
+          <div class="contact-item">
+            <h3 class="contact-item__label">Адрес</h3>
+            <p class="contact-item__value">г. Москва, ул. Ленина, д. 1</p>
+          </div>
+          <div class="contact-item">
+            <h3 class="contact-item__label">Телефон</h3>
+            <p class="contact-item__value">+7 (495) 123-45-67</p>
+          </div>
+        </div>
+        <button class="contact-button">Позвоните мне</button>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p class="footer__text">Футер</p>
+    </footer>
+    
+  <script>
+    const toggle = document.getElementById('themeToggle');
+    const KEY = 'theme';
+
+    // Проверка сохранённой темы или системной
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const savedTheme = localStorage.getItem(KEY);
+    if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+      document.body.classList.add('theme-dark');
+      toggle.textContent = 'Светлая тема';
+    }
+
+    // Переключение темы
+    toggle.addEventListener('click', () => {
+      const isDark = document.body.classList.toggle('theme-dark');
+      localStorage.setItem(KEY, isDark ? 'dark' : 'light');
+      toggle.textContent = isDark ? 'Светлая тема' : 'Тёмная тема';
+    });
+  </script>
+  </div>
+</body>
+</html>

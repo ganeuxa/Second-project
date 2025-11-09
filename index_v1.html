@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Семестровая работа</title>
+  <link rel="stylesheet" href="style/styles.css">
+</head>
+<body>
+  <button class="theme-toggle" id="themeToggle">Сменить тему</button>
+
+  <div class="page">
+    <header class="header">
+      <h1 class="header__title">Семестровая работа</h1>
+    </header>
+
+    <nav class="nav">
+      <ul class="nav__list">
+        <li class="nav__item nav__item--active">
+          <a class="nav__link" href="index_v1.html">Главная</a>
+        </li>
+        <li class="nav__item">
+          <a class="nav__link" href="pages/news_v1.html">Новости</a>
+        </li>
+        <li class="nav__item">
+          <a class="nav__link" href="pages/goods_v1.html">Товары</a>
+        </li>
+        <li class="nav__item">
+          <a class="nav__link" href="pages/contacts_v1.html">Контакты</a>
+        </li>
+      </ul>
+    </nav>
+
+    <main class="main">
+      <!-- Profile -->
+      <section class="profile">
+        <img class="profile__photo" src="images/Scout.jpg" alt="Фото автора">
+        <h2 class="profile__name">Иващенко Алексей Александрович</h2>
+        <p class="profile__group">ЭФБО-07-24</p>
+      </section>
+
+      <!-- About -->
+      <section class="about">
+        <h2 class="about__title">Обо мне</h2>
+        <p class="about__text">
+          Um... I don't even know where to start with you. I mean, do you even know who you're talkin' to? D-Do you have any idea, who I am? Basically - kind of a big deal!
+        </p>
+      </section>
+
+      <!-- Skills -->
+      <section class="skills">
+        <h2 class="skills__title">Мои навыки</h2>
+        <div class="skills__list">
+          <div class="skill">
+            <div class="skill__label">
+              <span>Крутость</span>
+            </div>
+            <div class="skill__bar">
+            </div>
+          </div>
+          <div class="skill">
+            <div class="skill__label">
+              <span>Непревзойдённость</span>
+            </div>
+          </div>
+          <div class="skill">
+            <div class="skill__label">
+              <span>Великолепие</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Experience -->
+      <section class="experience">
+        <h2 class="experience__title">Опыт работы</h2>
+        <div class="experience__list">
+          <article class="experience__item">
+            <div>
+              <h3 class="experience__item-title">Официальный представитель по защите мороженого от растапливания</h3>
+              <p class="experience__item-desc">Следил за тем, чтобы холодная вкусняшка не таяла</p>
+            </div>
+          </article>
+          <article class="experience__item">
+            <div>
+              <h3 class="experience__item-title">Тестировщик подушек безопасности</h3>
+              <p class="experience__item-desc">Было и вправду больно</p>
+            </div>
+          </article>
+          <article class="experience__item">
+            <div>
+              <h3 class="experience__item-title">Птицевед во "Вкусно и Точка"</h3>
+              <p class="experience__item-desc">Прогонял голубей с уличной веранды</p>
+            </div>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p class="footer__text">&copy; 2025 Портфолио студента. Все права защищены.</p>
+    </footer>
+  </div>
+
+  <script>
+    const toggle = document.getElementById('themeToggle');
+    const KEY = 'theme';
+
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const savedTheme = localStorage.getItem(KEY);
+    if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+      document.body.classList.add('theme-dark');
+      toggle.textContent = 'Светлая тема';
+    }
+
+    toggle.addEventListener('click', () => {
+      const isDark = document.body.classList.toggle('theme-dark');
+      localStorage.setItem(KEY, isDark ? 'dark' : 'light');
+      toggle.textContent = isDark ? 'Светлая тема' : 'Тёмная тема';
+    });
+  </script>
+</body>
+</html>

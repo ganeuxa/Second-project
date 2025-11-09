@@ -4,42 +4,81 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Новости</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 </head>
-<body>
-  <header>Хэдер</header>
+<body class="bg-light d-flex flex-column min-vh-100">
+  <!-- Header -->
+  <header class="bg-primary text-white py-3">
+    <div class="container">
+      <h1 class="h3 mb-0">Новости</h1>
+    </div>
+  </header>
 
-  <nav>
-    <ul>
-      <li><a href="../index.html">Главная</a></li>
-      <li><a href="news.html">Новости</a></li>
-      <li><a href="practices.html">Практики</a></li>
-      <li><a href="goods.html">Товары</a></li>
-      <li><a href="contacts.html">Контакты</a></li>
-    </ul>
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Переключить навигацию">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item"><a class="nav-link" href="../index.html">Главная</a></li>
+          <li class="nav-item"><a class="nav-link active" href="news.html">Новости</a></li>
+          <li class="nav-item"><a class="nav-link" href="goods.html">Товары</a></li>
+          <li class="nav-item"><a class="nav-link" href="contacts.html">Контакты</a></li>
+        </ul>
+      </div>
+    </div>
   </nav>
 
-  <main>
-    <h1>Новости</h1>
-
-    <article>
-      <h2>Запуск нового проекта</h2>
-      <p><time datetime="2025-10-01">1 октября 2025</time> — Автор: Иванов И.</p>
-      <p>Мы запустили новый веб-проект, посвящённый обучению фронтенду.</p>
-    </article>
-
-    <article>
-      <h2>Обновление сайта</h2>
-      <p><time datetime="2025-10-15">15 октября 2025</time> — Автор: Петров П.</p>
-      <p>Сайт получил новое оформление и улучшенную навигацию.</p>
-    </article>
-
-    <article>
-      <h2>Награда за дизайн</h2>
-      <p><time datetime="2025-10-30">30 октября 2025</time> — Автор: Сидоров С.</p>
-      <p>Наш сайт занял первое место в конкурсе студенческих работ.</p>
-    </article>
+  <!-- Main Content -->
+  <main class="container my-4 flex-grow-1">
+    <div class="row g-4">
+      <div class="col-12">
+        <div class="card h-100 shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title">Мороженое спасено</h5>
+            <p class="text-muted small"><time datetime="2025-11-01">11 июля 2025</time> — Автор: Иващенко А.А.</p>
+            <p class="card-text">
+              Благодаря моим величайшим усилиям, ни один пломбир не пострадал во время аномальной жары в Москве.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-12">
+        <div class="card h-100 shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title">Подушки безопасности теперь ещё мягче</h5>
+            <p class="text-muted small"><time datetime="2025-10-20">20 октября 2025</time> — Автор: Иващенко А.А.</p>
+            <p class="card-text">
+              Я потерял пару-тройку зубов, но чего не сделаешь ради прогресса
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-12">
+        <div class="card h-100 shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title">Война с голубями</h5>
+            <p class="text-muted small"><time datetime="2025-10-05">5 октября 2025</time> — Автор: Иващенко А.А.</p>
+            <p class="card-text">
+              Голуби больше не посмеют тревожить мирных граждан
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
   </main>
 
-  <footer>Футер</footer>
+  <!-- Footer -->
+  <footer class="bg-dark text-white py-3 mt-auto">
+    <div class="container text-center">
+      <p class="mb-0">&copy; 2025 Портфолио студента. Все права защищены.</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Новости</title>
+  <link rel="stylesheet" href="../style/styles.css">
+</head>
+<body>
+  <button class="theme-toggle" id="themeToggle">Сменить тему</button>
+
+  <div class="page">
+    <header class="header">
+      <h1 class="header__title">Новости</h1>
+    </header>
+
+    <nav class="nav">
+      <ul class="nav__list">
+        <li class="nav__item"><a class="nav__link" href="../index_v1.html">Главная</a></li>
+        <li class="nav__item nav__item--active"><a class="nav__link" href="news_v1.html">Новости</a></li>
+        <li class="nav__item"><a class="nav__link" href="goods_v1.html">Товары</a></li>
+        <li class="nav__item"><a class="nav__link" href="contacts_v1.html">Контакты</a></li>
+      </ul>
+    </nav>
+
+    <main class="main">
+      <div class="news__list">
+        <article class="card card--news">
+          <h2 class="card__title">Мороженое спасено</h2>
+          <p class="card__meta">
+            <time datetime="2025-11-01">11 июля 2025</time> — Автор: Иващенко А.А.
+          </p>
+          <p class="card__text">
+            Благодаря моим величайшим усилиям, ни один пломбир не пострадал во время аномальной жары в Москве.
+          </p>
+        </article>
+
+        <article class="card card--news">
+          <h2 class="card__title">Подушки безопасности теперь ещё мягче</h2>
+          <p class="card__meta">
+            <time datetime="2025-10-20">20 октября 2025</time> — Автор: Иващенко А.А.
+          </p>
+          <p class="card__text">
+            Я потерял пару-тройку зубов, но чего не сделаешь ради прогресса
+          </p>
+        </article>
+
+        <article class="card card--news">
+          <h2 class="card__title">Война с голубями</h2>
+          <p class="card__meta">
+            <time datetime="2025-10-05">5 октября 2025</time> — Автор: Иващенко А.А.
+          </p>
+          <p class="card__text">
+            Голуби больше не посмеют тревожить мирных граждан
+          </p>
+        </article>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <p class="footer__text">&copy; 2025 Портфолио студента. Все права защищены.</p>
+    </footer>
+
+    <script>
+      const toggle = document.getElementById('themeToggle');
+      const KEY = 'theme';
+
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const savedTheme = localStorage.getItem(KEY);
+      if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+        document.body.classList.add('theme-dark');
+        toggle.textContent = 'Светлая тема';
+      }
+
+      toggle.addEventListener('click', () => {
+        const isDark = document.body.classList.toggle('theme-dark');
+        localStorage.setItem(KEY, isDark ? 'dark' : 'light');
+        toggle.textContent = isDark ? 'Светлая тема' : 'Тёмная тема';
+      });
+    </script>
+  </div>
+</body>
+</html>

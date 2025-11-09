@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Товары</title>
+  <link rel="stylesheet" href="../style/styles.css">
+</head>
+<body>
+  <div class="page">
+    <header class="header">
+      <h1 class="header__title">Товары</h1>
+    </header>
+
+    <nav class="nav">
+      <ul class="nav__list">
+        <li class="nav__item"><a class="nav__link" href="../index_v1.html">Главная</a></li>
+        <li class="nav__item"><a class="nav__link" href="news_v1.html">Новости</a></li>
+        <li class="nav__item nav__item--active"><a class="nav__link" href="goods_v1.html">Товары</a></li>
+        <li class="nav__item"><a class="nav__link" href="contacts_v1.html">Контакты</a></li>
+      </ul>
+    </nav>
+
+    <main class="main">
+      <div class="products__grid">
+        <article class="card card--product">
+          <img class="card__image" src="../images/Podmetapki.png" alt="Подметапки">
+          <h2 class="card__title">Подметапки</h2>
+          <p class="card__text">Жена уронит челюсть от такого подарка</p>
+          <p class="card__price">25 000 руб.</p>
+        </article>
+        <article class="card card--product">
+          <img class="card__image" src="../images/KrugliKubik.jpg" alt="Круглый кубик">
+          <h2 class="card__title">Круглый кубик</h2>
+          <p class="card__text">И нет, вселенная не схлопнулась</p>
+          <p class="card__price">5 000 руб.</p>
+        </article>
+        <article class="card card--product">
+          <img class="card__image" src="../images/Molotochek.jpg" alt="Электромолоток">
+          <h2 class="card__title">Электромолоток</h2>
+          <p class="card__text">С подогревом ручки</p>
+          <p class="card__price">800 руб.</p>
+        </article>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <p class="footer__text">Футер</p>
+    </footer>
+        
+    <script>
+      const toggle = document.getElementById('themeToggle');
+      const KEY = 'theme';
+
+      // Проверка сохранённой темы или системной
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const savedTheme = localStorage.getItem(KEY);
+      if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+        document.body.classList.add('theme-dark');
+        toggle.textContent = 'Светлая тема';
+      }
+
+      // Переключение темы
+      toggle.addEventListener('click', () => {
+        const isDark = document.body.classList.toggle('theme-dark');
+        localStorage.setItem(KEY, isDark ? 'dark' : 'light');
+        toggle.textContent = isDark ? 'Светлая тема' : 'Тёмная тема';
+      });
+    </script>
+  </div>
+</body>
+</html>
