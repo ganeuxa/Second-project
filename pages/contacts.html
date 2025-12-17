@@ -221,7 +221,7 @@
       <h2>Форма обратной связи</h2>
     </div>
     <div class="modal-content">
-      <form id="feedbackForm" method="dialog">
+      <form id="feedbackForm">
         <div class="form-group">
           <label for="name">Имя<span class="required">*</span></label>
           <input type="text" id="name" name="name" required placeholder="Введите ваше имя">
@@ -251,7 +251,7 @@
           <textarea id="message" name="message" required placeholder="Опишите ваш вопрос..."></textarea>
         </div>
         <div class="modal-actions">
-          <button type="submit" class="btn-modal btn-secondary-modal">Отмена</button>
+          <button type="button" class="btn-modal btn-secondary-modal" onclick="contactModal.close()">Отмена</button>
           <button type="button" class="btn-modal btn-primary-modal" onclick="submitContactForm()">Отправить</button>
         </div>
       </form>

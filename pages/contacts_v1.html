@@ -6,7 +6,7 @@
   <title>Контакты</title>
   <link rel="stylesheet" href="../style/styles.css">
 
-  <!-- Стили для модального окна -->
+  <!-- Стили модального окна -->
   <style>
     dialog::backdrop {
       background: rgba(0, 0, 0, 0.6);
@@ -135,7 +135,6 @@
       }
     }
 
-    /* Адаптивность */
     @media (max-width: 600px) {
       dialog {
         margin: 1rem;
@@ -186,8 +185,7 @@
             <p class="contact-item__value">+7 (999) 888-77-66</p>
           </div>
         </div>
-        <!-- Кнопка открытия модального окна -->
-        <button class="contact-button" onclick="openContactModal()">Связаться с нами</button>
+        <button class="contact-button" onclick="contactModal.showModal()">Связаться с нами</button>
       </section>
     </main>
 
@@ -202,7 +200,7 @@
       <h2>Форма обратной связи</h2>
     </div>
     <div class="modal-content">
-      <form id="feedbackForm" method="dialog">
+      <form id="feedbackForm">
         <div class="form-group">
           <label for="name">Имя<span class="required">*</span></label>
           <input type="text" id="name" name="name" required placeholder="Введите ваше имя">
@@ -232,22 +230,14 @@
           <textarea id="message" name="message" required placeholder="Опишите вашу проблему или вопрос..."></textarea>
         </div>
         <div class="modal-actions">
-          <button type="submit" class="btn btn-secondary">Отмена</button>
+          <button type="button" class="btn btn-secondary" onclick="contactModal.close()">Отмена</button>
           <button type="button" class="btn btn-primary" onclick="submitForm()">Отправить</button>
         </div>
       </form>
     </div>
   </dialog>
 
-  <!-- JavaScript для модального окна -->
   <script>
-    // === Функция открытия модалки ===
-    function openContactModal() {
-      document.body.style.overflow = 'hidden'; // 🔒
-      contactModal.showModal();
-    }
-
-    // === Функция отправки формы ===
     function submitForm() {
       const form = document.getElementById('feedbackForm');
       if (!form.checkValidity()) {
@@ -255,12 +245,13 @@
         return;
       }
 
+      const formData = new FormData(form);
       const data = {
-        name: form.name.value,
-        phone: form.phone.value,
-        email: form.email.value,
-        category: form.category.value,
-        message: form.message.value
+        name: formData.get('name'),
+        phone: formData.get('phone'),
+        email: formData.get('email'),
+        category: formData.get('category'),
+        message: formData.get('message')
       };
 
       console.log('Данные формы:', data);
@@ -270,26 +261,19 @@
       form.reset();
     }
 
-    // === Закрытие по подложке ===
-    document.getElementById('contactModal').addEventListener('click', function(e) {
-      if (e.target === this) {
-        this.close();
-      }
+    // Закрытие по клику на подложку
+    document.getElementById('contactModal').addEventListener('click', function (e) {
+      if (e.target === this) this.close();
     });
 
-    // === Блокировка Enter вне textarea ===
-    document.addEventListener('keypress', function(e) {
-      if (e.key === 'Enter' && e.target.tagName !== 'TEXTAREA' && e.target.closest('#contactModal')) {
+    // Предотвращение отправки формы по Enter вне textarea
+    document.getElementById('feedbackForm').addEventListener('keypress', function (e) {
+      if (e.key === 'Enter' && e.target.tagName !== 'TEXTAREA') {
         e.preventDefault();
       }
     });
 
-    // === Восстановление прокрутки при закрытии ===
-    document.getElementById('contactModal').addEventListener('close', () => {
-      document.body.style.overflow = ''; // 🔓
-    });
-
-    // === Смена темы ===
+    // ========== Тема ==========
     const toggle = document.getElementById('themeToggle');
     const KEY = 'theme';
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
