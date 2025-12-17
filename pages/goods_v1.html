@@ -7,6 +7,9 @@
   <link rel="stylesheet" href="../style/styles.css">
 </head>
 <body>
+  <!-- Добавлена кнопка смены темы -->
+  <button class="theme-toggle" id="themeToggle">Сменить тему</button>
+
   <div class="page">
     <header class="header">
       <h1 class="header__title">Товары</h1>
@@ -48,25 +51,27 @@
       <p class="footer__text">Футер</p>
     </footer>
         
-    <script>
-      const toggle = document.getElementById('themeToggle');
-      const KEY = 'theme';
-
-      // Проверка сохранённой темы или системной
-      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      const savedTheme = localStorage.getItem(KEY);
-      if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
-        document.body.classList.add('theme-dark');
-        toggle.textContent = 'Светлая тема';
-      }
-
-      // Переключение темы
-      toggle.addEventListener('click', () => {
-        const isDark = document.body.classList.toggle('theme-dark');
-        localStorage.setItem(KEY, isDark ? 'dark' : 'light');
-        toggle.textContent = isDark ? 'Светлая тема' : 'Тёмная тема';
-      });
-    </script>
   </div>
+
+  <!-- Добавлен скрипт для переключения темы -->
+  <script>
+    const toggle = document.getElementById('themeToggle');
+    const KEY = 'theme';
+
+    // Проверка сохранённой темы или системной
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const savedTheme = localStorage.getItem(KEY);
+    if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+      document.body.classList.add('theme-dark');
+      toggle.textContent = 'Светлая тема';
+    }
+
+    // Переключение темы
+    toggle.addEventListener('click', () => {
+      const isDark = document.body.classList.toggle('theme-dark');
+      localStorage.setItem(KEY, isDark ? 'dark' : 'light');
+      toggle.textContent = isDark ? 'Светлая тема' : 'Тёмная тема';
+    });
+  </script>
 </body>
 </html>

@@ -7,6 +7,9 @@
   <link rel="stylesheet" href="../style/styles.css">
 </head>
 <body>
+  <!-- Добавлена кнопка смены темы -->
+  <button class="theme-toggle" id="themeToggle">Сменить тему</button>
+
   <div class="page">
     <header class="header">
       <h1 class="header__title">Контакты</h1>
@@ -17,7 +20,7 @@
         <li class="nav__item"><a class="nav__link" href="../index_v1.html">Главная</a></li>
         <li class="nav__item"><a class="nav__link" href="news_v1.html">Новости</a></li>
         <li class="nav__item"><a class="nav__link" href="goods_v1.html">Товары</a></li>
-        <li class="nav__item nav__item--active"><a class="nav__link" href="contacts.html">Контакты</a></li>
+        <li class="nav__item nav__item--active"><a class="nav__link" href="contacts_v1.html">Контакты</a></li>
       </ul>
     </nav>
 
@@ -46,6 +49,9 @@
       <p class="footer__text">Футер</p>
     </footer>
     
+  </div>
+
+  <!-- Добавлен скрипт для переключения темы -->
   <script>
     const toggle = document.getElementById('themeToggle');
     const KEY = 'theme';
@@ -65,6 +71,5 @@
       toggle.textContent = isDark ? 'Светлая тема' : 'Тёмная тема';
     });
   </script>
-  </div>
 </body>
 </html>
