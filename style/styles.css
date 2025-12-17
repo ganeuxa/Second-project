@@ -9,6 +9,7 @@
   --color-secondary: #764ba2;
   --color-accent: #e74c3c;
   --color-success: #2ecc71;
+  --color-discount: #ff9f43; /* оранжевый для скидки */
 
   /* Типографика */
   --font-main: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -47,6 +48,9 @@ body.theme-dark {
   --color-muted: #b0b0b0;
   --color-primary: #8a9bff;
   --color-secondary: #a070e0;
+  --color-accent: #ff6b6b;
+  --color-success: #6bff9b;
+  --color-discount: #ffcc66;
 }
 
 /* ===== БАЗОВЫЕ СТИЛИ ===== */
@@ -265,47 +269,52 @@ body {
   line-height: 1.6;
 }
 
-/* ===== УНИВЕРСАЛЬНАЯ КАРТОЧКА ===== */
-.card {
+/* ===== КАРТОЧКИ ТОВАРОВ (БЭМ + СОСТОЯНИЯ) ===== */
+.product-card {
   background: var(--color-bg);
   border-radius: var(--radius-md);
   padding: var(--space-md);
   box-shadow: var(--shadow-sm);
   transition: var(--transition);
+  position: relative;
+  text-align: center;
+  border: 2px solid transparent;
 }
 
-.card:hover {
+/* Базовое состояние — уже выше */
+
+/* Состояние при наведении */
+.product-card:hover {
   transform: translateY(-5px);
   box-shadow: var(--shadow-md);
 }
 
-.card--news {
-  border-left: 4px solid var(--color-primary);
+/* Состояние "выбрано" (по клику) */
+.product-card--selected {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-primary, rgba(102, 126, 234, 0.3));
 }
 
-.card--product {
-  text-align: center;
+/* Модификатор "со скидкой" */
+.product-card--discount {
+  border-top: 4px solid var(--color-discount);
 }
 
-.card__title {
-  font-size: var(--font-size-h3);
-  margin: 0 0 var(--space-sm) 0;
-  color: var(--color-fg);
+.product-card--discount::before {
+  content: "СКИДКА!";
+  position: absolute;
+  top: var(--space-sm);
+  right: var(--space-sm);
+  background: var(--color-discount);
+  color: white;
+  font-weight: bold;
+  padding: 4px 8px;
+  border-radius: var(--radius-full);
+  font-size: 0.8rem;
 }
 
-.card__text {
-  color: var(--color-muted);
-  margin: 0;
-  line-height: 1.6;
-}
-
-.card__meta {
-  color: var(--color-muted);
-  font-size: 0.875rem;
-  margin: 0 0 var(--space-sm) 0;
-}
-
-.card__image {
+/* Содержимое карточки */
+.product-card__image {
   width: 100%;
   height: 200px;
   object-fit: cover;
@@ -313,7 +322,19 @@ body {
   margin-bottom: var(--space-sm);
 }
 
-.card__price {
+.product-card__title {
+  font-size: var(--font-size-h3);
+  margin: 0 0 var(--space-sm) 0;
+  color: var(--color-fg);
+}
+
+.product-card__text {
+  color: var(--color-muted);
+  margin: 0;
+  line-height: 1.6;
+}
+
+.product-card__price {
   font-size: 1.25rem;
   color: var(--color-accent);
   font-weight: bold;
@@ -382,10 +403,6 @@ body {
   margin-top: var(--space-lg);
 }
 
-.footer__text {
-  margin: 0;
-}
-
 /* ===== ПЕРЕКЛЮЧАТЕЛЬ ТЕМЫ ===== */
 .theme-toggle {
   position: fixed;
@@ -422,5 +439,10 @@ body {
 
   .main {
     padding: var(--space-md);
+  }
+
+  /* Карточки товаров */
+  .products__grid {
+    grid-template-columns: 1fr !important;
   }
 }

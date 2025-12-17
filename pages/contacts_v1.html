@@ -187,7 +187,7 @@
           </div>
         </div>
         <!-- Кнопка открытия модального окна -->
-        <button class="contact-button" onclick="contactModal.showModal()">Связаться с нами</button>
+        <button class="contact-button" onclick="openContactModal()">Связаться с нами</button>
       </section>
     </main>
 
@@ -241,7 +241,13 @@
 
   <!-- JavaScript для модального окна -->
   <script>
-    // Функция отправки формы
+    // === Функция открытия модалки ===
+    function openContactModal() {
+      document.body.style.overflow = 'hidden'; // 🔒
+      contactModal.showModal();
+    }
+
+    // === Функция отправки формы ===
     function submitForm() {
       const form = document.getElementById('feedbackForm');
       if (!form.checkValidity()) {
@@ -249,13 +255,12 @@
         return;
       }
 
-      const formData = new FormData(form);
       const data = {
-        name: formData.get('name'),
-        phone: formData.get('phone'),
-        email: formData.get('email'),
-        category: formData.get('category'),
-        message: formData.get('message')
+        name: form.name.value,
+        phone: form.phone.value,
+        email: form.email.value,
+        category: form.category.value,
+        message: form.message.value
       };
 
       console.log('Данные формы:', data);
@@ -265,19 +270,26 @@
       form.reset();
     }
 
-    // Закрытие по клику на подложку
-    document.getElementById('contactModal').addEventListener('click', function (e) {
-      if (e.target === this) this.close();
+    // === Закрытие по подложке ===
+    document.getElementById('contactModal').addEventListener('click', function(e) {
+      if (e.target === this) {
+        this.close();
+      }
     });
 
-    // Предотвращение отправки формы по Enter вне textarea
-    document.getElementById('feedbackForm').addEventListener('keypress', function (e) {
-      if (e.key === 'Enter' && e.target.tagName !== 'TEXTAREA') {
+    // === Блокировка Enter вне textarea ===
+    document.addEventListener('keypress', function(e) {
+      if (e.key === 'Enter' && e.target.tagName !== 'TEXTAREA' && e.target.closest('#contactModal')) {
         e.preventDefault();
       }
     });
 
-    // ========== Тема ==========
+    // === Восстановление прокрутки при закрытии ===
+    document.getElementById('contactModal').addEventListener('close', () => {
+      document.body.style.overflow = ''; // 🔓
+    });
+
+    // === Смена темы ===
     const toggle = document.getElementById('themeToggle');
     const KEY = 'theme';
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;

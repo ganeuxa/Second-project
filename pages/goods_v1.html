@@ -5,9 +5,138 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Товары</title>
   <link rel="stylesheet" href="../style/styles.css">
+
+  <!-- Стили модального окна -->
+  <style>
+    dialog::backdrop {
+      background: rgba(0, 0, 0, 0.7);
+      animation: fadeIn 0.3s ease;
+    }
+
+    dialog#productModal {
+      border: none;
+      border-radius: 12px;
+      padding: 0;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+      animation: slideIn 0.3s ease;
+      max-width: 90vw;
+      max-height: 90vh;
+      width: auto;
+      overflow: hidden;
+      background: var(--color-bg);
+      color: var(--color-fg);
+    }
+
+    .modal-header {
+      position: relative;
+      padding: 1rem 1rem 1rem 2rem;
+      border-bottom: 1px solid var(--color-bg-alt);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 0.75rem;
+      right: 1rem;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      color: var(--color-muted);
+      cursor: pointer;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      transition: var(--transition);
+    }
+
+    .modal-close:hover {
+      background: var(--color-bg-alt);
+      color: var(--color-fg);
+    }
+
+    .modal-body {
+      display: flex;
+      flex-direction: column;
+      padding: 1.5rem 2rem 2rem 2rem;
+      gap: 1.5rem;
+    }
+
+    @media (min-width: 768px) {
+      .modal-body {
+        flex-direction: row;
+        gap: 2rem;
+      }
+
+      .modal-image {
+        flex: 0 0 300px;
+      }
+    }
+
+    .modal-image img {
+      width: 100%;
+      max-height: 50vh;
+      object-fit: contain;
+      border-radius: 8px;
+      background: var(--color-bg-alt);
+    }
+
+    .modal-content {
+      flex: 1;
+    }
+
+    .modal-title {
+      font-size: var(--font-size-h2);
+      margin: 0 0 0.75rem 0;
+      color: var(--color-fg);
+    }
+
+    .modal-text {
+      color: var(--color-muted);
+      line-height: 1.6;
+      margin: 0 0 1rem 0;
+    }
+
+    .modal-price {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: var(--color-accent);
+      margin: 0.5rem 0;
+    }
+
+    .modal-price--old {
+      text-decoration: line-through;
+      color: var(--color-muted);
+      font-size: 1.2rem;
+      margin-right: 0.5rem;
+    }
+
+    .modal-discount {
+      color: var(--color-discount);
+      font-weight: 600;
+      margin-top: 0.5rem;
+      font-size: 1rem;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.95);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+  </style>
 </head>
 <body>
-  <!-- Добавлена кнопка смены темы -->
   <button class="theme-toggle" id="themeToggle">Сменить тему</button>
 
   <div class="page">
@@ -25,24 +154,32 @@
     </nav>
 
     <main class="main">
-      <div class="products__grid">
-        <article class="card card--product">
-          <img class="card__image" src="../images/Podmetapki.png" alt="Подметапки">
-          <h2 class="card__title">Подметапки</h2>
-          <p class="card__text">Жена уронит челюсть от такого подарка</p>
-          <p class="card__price">25 000 руб.</p>
+      <div class="products__grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 30px;">
+        <!-- Карточка 1 -->
+        <article class="product-card" data-product='{"title":"Подметапки","image":"../images/Podmetapki.png","desc":"Жена уронит челюсть от такого подарка","price":"25 000 руб."}'>
+          <img class="product-card__image" src="../images/Podmetapki.png" alt="Подметапки">
+          <h2 class="product-card__title">Подметапки</h2>
+          <p class="product-card__text">Жена уронит челюсть от такого подарка</p>
+          <p class="product-card__price">25 000 руб.</p>
         </article>
-        <article class="card card--product">
-          <img class="card__image" src="../images/KrugliKubik.jpg" alt="Круглый кубик">
-          <h2 class="card__title">Круглый кубик</h2>
-          <p class="card__text">И нет, вселенная не схлопнулась</p>
-          <p class="card__price">5 000 руб.</p>
+
+        <!-- Карточка 2 -->
+        <article class="product-card" data-product='{"title":"Круглый кубик","image":"../images/KrugliKubik.jpg","desc":"И нет, вселенная не схлопнулась","price":"5 000 руб."}'>
+          <img class="product-card__image" src="../images/KrugliKubik.jpg" alt="Круглый кубик">
+          <h2 class="product-card__title">Круглый кубик</h2>
+          <p class="product-card__text">И нет, вселенная не схлопнулась</p>
+          <p class="product-card__price">5 000 руб.</p>
         </article>
-        <article class="card card--product">
-          <img class="card__image" src="../images/Molotochek.jpg" alt="Электромолоток">
-          <h2 class="card__title">Электромолоток</h2>
-          <p class="card__text">С подогревом ручки</p>
-          <p class="card__price">800 руб.</p>
+
+        <!-- Карточка 3 — со скидкой -->
+        <article class="product-card product-card--discount" data-product='{"title":"Электромолоток","image":"../images/Molotochek.jpg","desc":"С подогревом ручки","price":"800 руб.","oldPrice":"801 руб.","discountText":"Вы экономите целый 1 рубль!"}'>
+          <img class="product-card__image" src="../images/Molotochek.jpg" alt="Электромолоток">
+          <h2 class="product-card__title">Электромолоток</h2>
+          <p class="product-card__text">С подогревом ручки</p>
+          <p>
+            <del class="product-card__price--old">801 руб.</del>
+            <span class="product-card__price">800 руб.</span>
+          </p>
         </article>
       </div>
     </main>
@@ -50,27 +187,98 @@
     <footer class="footer">
       <p class="footer__text">Футер</p>
     </footer>
-        
   </div>
 
-  <!-- Добавлен скрипт для переключения темы -->
+  <!-- Модальное окно товара -->
+  <dialog id="productModal">
+    <div class="modal-header">
+      <button class="modal-close" id="modalCloseBtn">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-image">
+        <img id="modalImage" src="" alt="">
+      </div>
+      <div class="modal-content">
+        <h2 class="modal-title" id="modalTitle"></h2>
+        <p class="modal-text" id="modalText"></p>
+        <div>
+          <span id="modalOldPrice" class="modal-price--old"></span>
+          <span id="modalPrice" class="modal-price"></span>
+        </div>
+        <p id="modalDiscount" class="modal-discount"></p>
+      </div>
+    </div>
+  </dialog>
+
   <script>
+    // === Смена темы ===
     const toggle = document.getElementById('themeToggle');
     const KEY = 'theme';
-
-    // Проверка сохранённой темы или системной
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
     const savedTheme = localStorage.getItem(KEY);
     if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
       document.body.classList.add('theme-dark');
       toggle.textContent = 'Светлая тема';
     }
-
-    // Переключение темы
     toggle.addEventListener('click', () => {
       const isDark = document.body.classList.toggle('theme-dark');
       localStorage.setItem(KEY, isDark ? 'dark' : 'light');
       toggle.textContent = isDark ? 'Светлая тема' : 'Тёмная тема';
+    });
+
+    // === Модальное окно товара ===
+    const modal = document.getElementById('productModal');
+
+    function openModal(data) {
+      const modalImage = document.getElementById('modalImage');
+      const modalTitle = document.getElementById('modalTitle');
+      const modalText = document.getElementById('modalText');
+      const modalPrice = document.getElementById('modalPrice');
+      const modalOldPrice = document.getElementById('modalOldPrice');
+      const modalDiscount = document.getElementById('modalDiscount');
+
+      modalImage.src = data.image;
+      modalImage.alt = data.title;
+      modalTitle.textContent = data.title;
+      modalText.textContent = data.desc;
+      modalPrice.textContent = data.price || '';
+      modalOldPrice.textContent = data.oldPrice || '';
+      modalDiscount.textContent = data.discountText || '';
+
+      document.body.style.overflow = 'hidden'; // 🔒 блокируем прокрутку
+      modal.showModal();
+    }
+
+    function closeModal() {
+      modal.close();
+    }
+
+    document.querySelectorAll('.product-card').forEach(card => {
+      card.addEventListener('click', () => {
+        const data = JSON.parse(card.getAttribute('data-product'));
+        openModal(data);
+      });
+    });
+
+    // Крестики и подложка
+    document.getElementById('modalCloseBtn').addEventListener('click', closeModal);
+
+    modal.addEventListener('click', (e) => {
+      const rect = modal.getBoundingClientRect();
+      const isInDialog = (
+        rect.top <= e.clientY &&
+        e.clientY <= rect.top + rect.height &&
+        rect.left <= e.clientX &&
+        e.clientX <= rect.left + rect.width
+      );
+      if (!isInDialog) {
+        closeModal();
+      }
+    });
+
+    // Восстанавливаем прокрутку при закрытии
+    modal.addEventListener('close', () => {
+      document.body.style.overflow = ''; // 🔓 разблокируем прокрутку
     });
   </script>
 </body>
